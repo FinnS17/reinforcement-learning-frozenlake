@@ -1,0 +1,83 @@
+import gym
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+def run(episodes):
+    
+    env = gym.make('FrozenLake-v1', map_name= "8x8", is_slippery=False, render_mode=None)
+
+
+    #value_matrix = np.zeros((env.observation_space.n, env.action_space.n)) # initialisiere Wertematrix 64x4
+    value_matrix = np.zeros((env.observation_space.n, env.action_space.n), dtype=np.float64)
+
+    learning_rate_a = 0.9 # alpha
+    discount_factor_g = 0.9 # gamma
+
+    epsilon = 1 # Explorationrate
+    epsilon_decay_rate = 0.00001
+    rng = np.random.default_rng() #random number generator
+
+    rewards_per_episode = np.zeros(episodes)
+    
+    for i in range(episodes):
+        state = env.reset()[0]
+        terminated = False # True wenn ins Loch gefallen ist oder Ziel erreicht hat
+        truncated = False # True wenn actions > 200
+
+
+        while(not terminated and not truncated):
+
+            #Exploration - Exploitation - Trade-Off
+            if rng.random() < epsilon:
+                action = env.action_space.sample()
+            else:
+                action = np.argmax(value_matrix[state, :])
+
+            new_state, reward, terminated, truncated, _ = env.step(action)
+
+            value_matrix[state, action] = (value_matrix[state, action] + learning_rate_a * (reward + discount_factor_g * np.max(value_matrix[new_state, :]) - value_matrix[state, action]))
+
+            state = new_state
+
+        epsilon = max(epsilon - epsilon_decay_rate, 0) # Explorationrate anpassen
+
+        if(epsilon==0): #hilft die Q-Werte zu stabilisieren nachdem wir fertig sind mit exploren
+            learning_rate_a = 0.0001
+
+        if reward == 1:
+            rewards_per_episode[i] = 1
+        #print(value_matrix)
+
+    env.close()
+
+
+    sum_rewards = np.zeros(episodes)
+    for t in range (episodes):
+          sum_rewards[t] = np.sum(rewards_per_episode[max(0, t-100):(t+1)])
+    plt.plot(sum_rewards)
+    plt.savefig('frozen_lake8x8.png')
+    print(value_matrix)
+
+    env = gym.make('FrozenLake-v1', map_name= "8x8", is_slippery=False, render_mode="human")
+
+    for i in range(1):
+        state = env.reset()[0]
+        terminated = False # True wenn ins Loch gefallen ist oder Ziel erreicht hat
+        truncated = False # True wenn actions > 200
+
+
+        while(not terminated and not truncated):
+
+            action = np.argmax(value_matrix[state, :])
+
+            new_state, reward, terminated, truncated, _ = env.step(action)
+
+            state = new_state
+
+    env.close()
+
+
+
+if __name__ == '__main__':
+    run(5000)
