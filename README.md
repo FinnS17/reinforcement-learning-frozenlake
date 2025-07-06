@@ -1,45 +1,49 @@
-# Reinforcement Learning Agents: Random Maze, Q-Learning & Monte Carlo
+# Reinforcement Learning: FrozenLake & Custom Maze
 
-This repository contains three Python scripts demonstrating basic Reinforcement Learning techniques in custom and OpenAI Gym environments:
+This project explores different Reinforcement Learning (RL) algorithms applied to two types of environments:
 
-1. **Random Maze Agent** (`random_agent.py`)  
-2. **Tabular Q-Learning on FrozenLake** (`q_learning_frozenlake.py`)  
-3. **Monte Carlo Value Estimation on Custom FrozenLake** (`monte_carlo_agent.py`)  
+1. A **custom-built maze** environment (no external libraries)
+2. The classic `FrozenLake-v1` environment from OpenAI Gym
 
 ---
 
-## 📂 Repository Structure
+## 📂 Project Structure
 
-```text
-.
-├── random_agent.py              # Random Maze Agent Simulator
-├── q_learning_frozenlake.py     # Tabular Q-Learning on FrozenLake-v1 (8×8, deterministic)
-├── monte_carlo_agent.py         # Monte Carlo Value Estimation with ε-greedy policy
-├── q_learning_frozenlake.png    # Generated learning curve for Q-Learning
-└── README.md                    # This file
+### 🔷 Custom Maze Environment
+
+- `random_agent.py`  
+  A random agent that explores a self-defined 8x8 maze with obstacles, start and goal states.
+  It collects visit statistics across episodes and estimates state values based on path frequency.
+
+> This environment is implemented manually using NumPy and not based on Gym.
+
+### 🧊 OpenAI Gym: FrozenLake-v1
+
+Implemented using the official Gym environment:
+
+- `value_iteration.py` – Solves the MDP with dynamic programming
+- `q_learning.py` – Model-free Q-learning
+- `deep_q_learning.py` – Uses a neural network to approximate Q-values
+
+---
+
+## 🎯 Goal
+
+Compare different RL strategies on different environments:
+
+- Solve `FrozenLake-v1` with model-based and model-free methods
+- Explore and visualize high-value paths in a custom maze using a random agent
 
 ---
 
 ## 🛠️ Requirements
 
-- Python ≥ 3.8  
-- `numpy`  
-- `matplotlib`  
-- `gym` or `gymnasium`  
-- `tqdm` (for progress bars)  
+- Python 3.9+
+- `numpy`
+- `matplotlib`
+- `gym`
 
-Install dependencies via:
-
-```bash
-pip install numpy matplotlib gym tqdm
-
-- Python ≥ 3.9  
-- `numpy`  
-- `matplotlib`  
-- `gymnasium` (or `gym`)  
-- `tqdm`  
-
-Install dependencies:
+Install all dependencies:
 
 ```bash
-pip install numpy matplotlib gymnasium tqdm
+pip install -r requirements.txt
