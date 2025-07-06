@@ -2,7 +2,4 @@
 *.zip
 __pycache__/
 Deep Q-Learning/
-Q-Learning/
-Random/
-Value Iteration/
 venv/
