@@ -1,43 +1,35 @@
-# Reinforcement Learning: FrozenLake & Custom Maze
+# Reinforcement Learning Agents: Random Maze, Q-Learning & Monte Carlo
 
-This project explores various Reinforcement Learning (RL) algorithms applied to two types of environments:
+This repository contains three Python scripts demonstrating basic Reinforcement Learning techniques in custom and OpenAI Gym environments:
 
-1. A **custom-built maze** environment (no external frameworks)  
-2. The classic `FrozenLake-v1` environment from OpenAI Gym
-
----
-
-## 📂 Project Structure
-
-### 🔷 Custom Maze Environment
-
-- **`random_agent.py`**  
-  A random agent navigates an 8×8 maze with obstacles, start and goal states.  
-  Collects visit statistics across episodes, estimates state values, and visualizes the highest-value path.
-
-> This environment is implemented manually using NumPy, without Gym.
-
-### 🧊 OpenAI Gym: FrozenLake-v1
-
-- **`value_iteration.py`**  
-  Solves the FrozenLake MDP using dynamic programming (Value Iteration).  
-- **`q_learning.py`**  
-  Tabular Q-learning with an ε-greedy policy on the deterministic 8×8 FrozenLake.  
-- **`deep_q_learning.py`**  
-  Deep Q-Network (DQN) implementation that uses a neural network to approximate Q-values.  
-- **`monte_carlo.py`**  
-  Monte Carlo value estimation with ε-greedy policy improvement on a custom FrozenLake map.
+1. **Random Maze Agent** (`random_agent.py`)  
+2. **Tabular Q-Learning on FrozenLake** (`q_learning_frozenlake.py`)  
+3. **Monte Carlo Value Estimation on Custom FrozenLake** (`monte_carlo_agent.py`)  
 
 ---
 
-## 🎯 Objectives
+## 📂 Repository Structure
 
-- **Compare model-based** (Value Iteration) **vs. model-free** (Q-Learning, DQN, Monte Carlo) methods on FrozenLake-v1.  
-- **Investigate and visualize** high-value paths in a custom maze environment using a random agent.
+├── random_agent.py              # Random Maze Agent Simulator
+├── q_learning_frozenlake.py     # Tabular Q-Learning on FrozenLake-v1 (8×8, deterministic)
+├── monte_carlo_agent.py         # Monte Carlo Value Estimation with ε-Greedy Policy
+├── q_learning_frozenlake.png    # Generated learning curve for Q-Learning
+└── README.md                    # This file
 
 ---
 
 ## 🛠️ Requirements
+
+- Python ≥ 3.8  
+- `numpy`  
+- `matplotlib`  
+- `gym` or `gymnasium`  
+- `tqdm` (for progress bars)  
+
+Install dependencies via:
+
+```bash
+pip install numpy matplotlib gym tqdm
 
 - Python ≥ 3.9  
 - `numpy`  
