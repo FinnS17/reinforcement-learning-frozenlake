@@ -13,6 +13,7 @@ This repository contains multiple implementations of basic Reinforcement Learnin
 │   └── monte_carlo_value_estimation.py
 ├── .gitignore
 └── README.md
+└── requirements.txt
 ```
 
 ## Environments
