@@ -10,9 +10,11 @@ This repository contains three Python scripts demonstrating basic Reinforcement 
 
 ## 📂 Repository Structure
 
+```text
+.
 ├── random_agent.py              # Random Maze Agent Simulator
 ├── q_learning_frozenlake.py     # Tabular Q-Learning on FrozenLake-v1 (8×8, deterministic)
-├── monte_carlo_agent.py         # Monte Carlo Value Estimation with ε-Greedy Policy
+├── monte_carlo_agent.py         # Monte Carlo Value Estimation with ε-greedy policy
 ├── q_learning_frozenlake.png    # Generated learning curve for Q-Learning
 └── README.md                    # This file
 
